@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banque Web</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f2f5, #e0eafc);
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #0052D4, #4364F7, #6FB1FC);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #444;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+        }
+
+        .result {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .result.positif {
+            background-color: #ffe1e1;
+            color: #d10000;
+            border: 2px solid #ff8c8c;
+        }
+
+        .result.negatif {
+            background-color: #e1ffea;
+            color: #007b2e;
+            border: 2px solid #61d199;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue à l'Application de Détection du Diabète </h1>
+        <p>Analyse Prédictive du Diabète</p>
+    </header>
+
+    <form action="/predict" method="post">
+        <strong>Formulaire Patient :</strong>
+        <label for="Age">Âge :</label>
+        <input type="number" id="Age" name="Age" min="18" max="90">
+
+
+        <label for="Pregnancies">Pregnancies :</label>
+        <input type="number" id="Pregnancies" name="Pregnancies" min="0" max="20">
+
+
+        <label for="BMI">BMI :</label>
+        <input type="number" id="BMI" name="BMI">
+
+
+        <label for="Glucose">Glucose :</label>
+        <input type="number" id="Glucose" name="Glucose">
+
+
+        <label for="BloodPressure">BloodPressure :</label>
+        <input type="number" id="BloodPressure" name="BloodPressure">
+
+
+
+        <label for="HbA1c">HbA1c :</label>
+        <input type="number" id="HbA1c" name="HbA1c">
+
+
+        <label for="LDL">LDL :</label>
+        <input type="number" id="LDL" name="LDL">
+
+
+        <label for="HDL">HDL :</label>
+        <input type="number" id="HDL" name="HDL">
+
+
+
+        <label for="Triglycerides">Triglycerides :</label>
+        <input type="number" id="Triglycerides" name="Triglycerides">
+
+
+
+
+        <label for="FamilyHistory">FamilyHistory</label>
+        <select name="FamilyHistory" required>
+            <option value="1">Oui</option>
+            <option value="0">Non</option>
+        </select>
+
+
+
+        <label for="DietType">DietType :</label>
+        <select name="DietType" required>
+            <option value="1">1</option>
+            <option value="0">0</option>
+        </select>
+
+
+        <label for="Hypertension">Hypertension</label>
+        <select name="Hypertension" required>
+            <option value="1">Oui</option>
+            <option value="0">Non</option>
+        </select>
+
+
+
+        <label for="MedicationUse">MedicationUse :</label>
+        <select name="MedicationUse" required>
+            <option value="1">1</option>
+            <option value="0">0</option>
+        </select>
+
+
+
+
+        <button type="submit">Soumettre</button>
+    </form>
+
+    <!-- {% if prediction %} -->
+    <div class="result {{ 'positif' if 'malade' in prediction else 'negatif' }}">
+        {{ prediction }}
+    </div>
+    <!-- {% endif %} -->
+</body>
+</html>
